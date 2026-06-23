@@ -7,6 +7,9 @@ from bson.objectid import ObjectId
 
 
 app = Flask(__name__)
+@app.route("/")
+def home():
+    return "App is working!"
 app.secret_key = "vidhya123"
 
 load_dotenv()
@@ -249,3 +252,6 @@ def admin_dashboard():
 
 if __name__ == "__main__":
     app.run(debug=False)
+
+    if __name__ == "__main__":
+      app.run(host="0.0.0.0", port=10000)
