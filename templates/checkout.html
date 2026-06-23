@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Checkout</h1>
+
+<form action="/place_order" method="POST">
+
+    <input type="text" name="name" placeholder="Enter Your Name" required><br><br>
+
+    <input type="text" name="phone" placeholder="Enter Phone Number" required><br><br>
+
+    <textarea name="address" placeholder="Enter Address" required></textarea><br><br>
+
+    <button type="submit">Place Order</button>
+
+</form>
+
+<br>
+
+<a href="/cart">
+    <button>Back to Cart</button>
+</a>
+
+</body>
+</html>

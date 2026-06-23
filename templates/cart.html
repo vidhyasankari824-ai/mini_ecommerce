@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>🛒 My Cart</h1>
+
+{% if cart_products %}
+
+<div class="products">
+
+{% for product in cart_products %}
+
+<div class="card">
+    <img src="{{ product.image }}">
+    <h2>{{ product.name }}</h2>
+    <p>₹{{ product.price }}</p>
+
+    <a href="{{ url_for('remove_from_cart', id=product.id) }}">
+        <button>Remove ❌</button>
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<h2>Total: ₹{{ total }}</h2>
+
+<br>
+
+<a href="/">
+    <button>Continue Shopping</button>
+    <a href="/checkout">
+    <button>Checkout</button>
+</a>
+
+<br><br>
+</a>
+
+{% else %}
+
+<h2>Your Cart is Empty</h2>
+
+<a href="/">
+    <button>Continue Shopping</button>
+</a>
+
+{% endif %}
+
+</body>
+</html>

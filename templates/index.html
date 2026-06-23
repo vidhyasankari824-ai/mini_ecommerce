@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini E-Commerce</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<a href="/login">User Login</a> |
+<a href="/register">Register</a> |
+<a href="/admin_login">Admin Login</a>
+<a href="/order_history">Order History</a>
+<a href="/profile">Profile</a>
+
+<h1>Mini E-Mart</h1> 
+
+<a href="/cart">
+    <button>View Cart 🛒</button>
+</a>
+
+<br><br>
+
+<div class="products">
+
+{% for product in products %}
+
+<div class="card">
+    <img src="{{ product.image }}">
+    <h2>{{ product.name }}</h2>
+    <p>₹{{ product.price }}</p>
+
+    <a href="{{ url_for('add_to_cart', id=product.id) }}">
+        <button>Add to Cart</button>
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

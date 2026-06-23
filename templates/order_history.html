@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order History</title>
+</head>
+<body>
+
+<h1>Order History</h1>
+
+<table border="1">
+
+<tr>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Total</th>
+    <th>Status</th>
+</tr>
+
+{% for order in orders %}
+
+<tr>
+    <td>{{ order.name }}</td>
+    <td>{{ order.phone }}</td>
+    <td>{{ order.total }}</td>
+    <td>{{ order.status }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/">Back to Home</a>
+
+</body>
+</html>

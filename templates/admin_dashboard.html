@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+
+<a href="/add_product">Add Product</a>
+
+<h2>Users</h2>
+
+<table border="1">
+<tr>
+<th>Name</th>
+<th>Email</th>
+</tr>
+
+{% for user in users %}
+
+<tr>
+<td>{{ user.name }}</td>
+<td>{{ user.email }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<h2>Products</h2>
+
+<table border="1">
+
+<tr>
+<th>Name</th>
+<th>Price</th>
+<th>Stock</th>
+</tr>
+
+{% for product in products %}
+
+<tr>
+<td>{{ product.name }}</td>
+<td>{{ product.price }}</td>
+<td>{{ product.stock }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<h2>Orders</h2>
+
+<table border="1">
+
+<tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Total</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% for order in orders %}
+
+<tr>
+<td>{{ order.name }}</td>
+<td>{{ order.phone }}</td>
+<td>{{ order.total }}</td>
+<td>{{ order.status }}</td>
+<td>
+    {% if order.status == "Pending" %}
+        <a href="{{ url_for('approve_order', order_id=order._id) }}">Approve</a>
+    {% else %}
+        Approved
+    {% endif %}
+</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
