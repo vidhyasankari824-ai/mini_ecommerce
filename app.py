@@ -7,9 +7,6 @@ from bson.objectid import ObjectId
 
 
 app = Flask(__name__)
-@app.route("/")
-def home():
-    return "App is working!"
 app.secret_key = "vidhya123"
 
 load_dotenv()
