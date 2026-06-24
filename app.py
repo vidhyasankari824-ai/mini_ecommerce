@@ -33,6 +33,11 @@ def profile():
         "email": "vidhya@example.com"
     }
     return render_template("profile.html", user=user)
+
+@app.route("/logout")
+def logout():
+    return "Logged out successfully"
+
 if __name__ == "__main__":
     import os
     port = int(os.environ.get("PORT", 10000))
