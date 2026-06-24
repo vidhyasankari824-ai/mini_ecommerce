@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -16,6 +17,18 @@ def register():
 @app.route("/cart")
 def cart():
     return render_template("cart.html")
+
+@app.route("/admin_login")
+def admin_login():
+    return render_template("admin_login.html")
+
+@app.route("/order_history")
+def order_history():
+    return render_template("order_history.html")
+
+@app.route("/profile")
+def profile():
+    return render_template("profile.html")
 
 if __name__ == "__main__":
     import os
