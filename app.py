@@ -28,8 +28,11 @@ def order_history():
 
 @app.route("/profile")
 def profile():
-    return render_template("profile.html")
-
+    user = {
+        "name": "Vidhya",
+        "email": "vidhya@example.com"
+    }
+    return render_template("profile.html", user=user)
 if __name__ == "__main__":
     import os
     port = int(os.environ.get("PORT", 10000))
