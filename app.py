@@ -62,8 +62,13 @@ def home():
     if query:
         products = [p for p in products if query.lower() in p["name"].lower()]
 
-    return render_template("index.html", products=products, cart_count=len(session.get("cart", [])))
+    cart_count = cart_collection.count_documents({})
 
+    return render_template(
+      "index.html",
+      products=products,
+      cart_count=cart_count
+    )
 
 @app.route("/login")
 def login():
