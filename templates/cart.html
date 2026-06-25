@@ -1,56 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Cart</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 
-<h1>🛒 My Cart</h1>
+<div class="container mt-4">
 
-{% if cart_products %}
+  <h2 class="mb-4">Your Cart 🛒</h2>
 
-<div class="products">
+  {% if items %}
 
-{% for product in cart_products %}
+    <div class="row">
 
-<div class="card">
-    <img src="{{ product.image }}">
-    <h2>{{ product.name }}</h2>
-    <p>₹{{ product.price }}</p>
+      {% for item in items %}
+      <div class="col-md-4">
 
-    <a href="{{ url_for('remove_from_cart', id=product.id) }}">
-        <button>Remove ❌</button>
-    </a>
+        <div class="card product-card mb-3">
+
+          <div class="card-body">
+
+            <h5 class="card-title">{{ item.name }}</h5>
+            <p class="card-text">₹{{ item.price }}</p>
+
+            <!-- Remove Button -->
+            <a href="/cart/remove/{{ item.id }}" class="btn btn-danger btn-sm">
+              Remove
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+      {% endfor %}
+
+    </div>
+
+    <hr>
+
+    <h4 class="text-end">Total: ₹{{ total }}</h4>
+
+  {% else %}
+
+    <div class="text-center mt-5">
+      <h4>🛒 Your cart is empty 😢</h4>
+      <a href="/" class="btn btn-primary mt-3">Continue Shopping</a>
+    </div>
+
+  {% endif %}
 
 </div>
 
-{% endfor %}
-
-</div>
-
-<h2>Total: ₹{{ total }}</h2>
-
-<br>
-
-<a href="/">
-    <button>Continue Shopping</button>
-    <a href="/checkout">
-    <button>Checkout</button>
-</a>
-
-<br><br>
-</a>
-
-{% else %}
-
-<h2>Your Cart is Empty</h2>
-
-<a href="/">
-    <button>Continue Shopping</button>
-</a>
-
-{% endif %}
-
-</body>
-</html>
+{% endblock %}

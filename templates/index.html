@@ -1,44 +1,101 @@
-<!DOCTYPE html>
-<html>
-<head>
-   <meta name="google-site-verification" content="<meta name="google-site-verification" content="<meta name="google-site-verification" content="ITMZu6417DFin_0krOcwPJk-qq5tCuyoDHk3i2OuRC8" />" />" />
-    <title>Mini E-Commerce</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 
-<a href="/login">User Login</a> |
-<a href="/register">Register</a> |
-<a href="/admin_login">Admin Login</a>
-<a href="/order_history">Order History</a>
-<a href="/profile">Profile</a>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
 
-<h1>Mini E-Mart</h1> 
+    <a class="navbar-brand fw-bold" href="/">MiniShop</a>
 
-<a href="/cart">
-    <button>View Cart 🛒</button>
-</a>
+    <form class="d-flex ms-3 w-50" method="GET" action="/">
+      <input class="form-control me-2" type="search" name="q" placeholder="Search products">
+      <button class="btn btn-light" type="submit">Search</button>
+    </form>
 
-<br><br>
+    <div class="ms-auto">
+      <a href="/cart" class="btn btn-warning">
+        🛒 Cart ({{ cart_count }})
+      </a>
+    </div>
 
-<div class="products">
+  </div>
+</nav>
 
-{% for product in products %}
-
-<div class="card">
-    <img src="{{ product.image }}">
-    <h2>{{ product.name }}</h2>
-    <p>₹{{ product.price }}</p>
-
-    <a href="{{ url_for('add_to_cart', id=product.id) }}">
-        <button>Add to Cart</button>
-    </a>
-
+<!-- Banner -->
+<div class="container mt-3">
+  <div class="p-5 text-center banner">
+    <h1>Big Sale is Live 🔥</h1>
+    <p>Up to 70% Off on all products</p>
+    <a href="#products" class="btn btn-dark">Shop Now</a>
+  </div>
 </div>
 
-{% endfor %}
-
+<!-- Offers -->
+<div class="container mt-3">
+  <div class="alert alert-success text-center">
+    🎉 Free Delivery on Orders Above ₹499 | Extra 10% OFF with Coupon: MINI10
+  </div>
 </div>
 
-</body>
-</html>
+<!-- Categories -->
+<div class="container mt-4">
+  <div class="row text-center">
+
+    <div class="col">
+      <div class="card p-3">
+        📱<br>Mobiles
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card p-3">
+        👕<br>Fashion
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card p-3">
+        💻<br>Electronics
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card p-3">
+        🏠<br>Home
+      </div>
+    </div>
+
+  </div>
+</div>
+<h2 class="text-center mt-5 mb-4">🔥 Trending Products</h2>
+
+<!-- Products -->
+<div class="container mt-4" id="products">
+  <div class="row">
+
+    {% for product in products %}
+    <div class="col-md-3">
+      <div class="card product-card shadow-sm h-100"></div>
+
+        <img src="{{ product.image }}" class="card-img-top" alt="product image">
+
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <h5 class="text-success fw-bold">
+  ₹{{ product.price }}
+</h5>
+
+
+          <a href="/cart/add/{{ product.id }}" class="btn btn-primary w-100">
+            Add to Cart
+          </a>
+        </div>
+
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+{% endblock %}
