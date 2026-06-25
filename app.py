@@ -36,8 +36,8 @@ def home():
         {
             "id": 1,
             "name": "Phone",
-            "price": 30000,
-            "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800"
+            "price": 12000,
+            "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800"
         },
         {
             "id": 2,
